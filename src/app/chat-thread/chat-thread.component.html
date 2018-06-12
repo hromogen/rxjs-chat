@@ -1,3 +1,12 @@
-<p>
-  chat-thread works!
-</p>
+<div class="media conversation">
+  <div class="pull-left">
+    <img src="{{thread.avatarSrc}}" alt="avatar" class="media-object avatar">
+  </div>
+  <div class="media-body">
+    <h5 class="media-heading contact-name">{{thread.name}}
+      <span *ngIf="selected">&bull;</span>
+    </h5>
+    <small class="message-preview">{{thead.lastMessage.text}}</small>
+  </div>
+  <a href="" (click)="clicked($event)" class="div-link">Select</a>
+</div>
