@@ -7,9 +7,16 @@ import { MessagesService } from './message/messages.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+    <main>
+      <chat-page></chat-page>
+    </main>
+  `,
 })
 export class AppComponent {
-  title = 'app';
+  constructor(public messagesService: MessagesService,
+    public threadsService: ThreadsService,
+    public usersService: UsersService){
+    ChatExampleData.init(messagesService, threadsService, usersService);
+  }
 }

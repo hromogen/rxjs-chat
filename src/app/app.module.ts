@@ -6,6 +6,7 @@ import { ChatNavBarComponent } from './chat-nav-bar/chat-nav-bar.component';
 import { ChatThreadsComponent } from './chat-threads/chat-threads.component';
 import { ChatWindowComponent } from './chat-window/chat-window.component';
 import { ChatPageComponent } from './chat-page/chat-page.component';
+import { ChatThreadComponent } from './chat-thread/chat-thread.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ChatPageComponent } from './chat-page/chat-page.component';
     ChatNavBarComponent,
     ChatThreadsComponent,
     ChatWindowComponent,
-    ChatPageComponent
+    ChatPageComponent,
+    ChatThreadComponent
   ],
   imports: [
     BrowserModule
