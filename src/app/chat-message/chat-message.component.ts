@@ -1,25 +1,23 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs-compat';
 
 import { UsersService } from './../user/users.service';
-import { ThreadsService } from './../thread/threads.service';
-import { MessagesService } from './../message/messages.service';
 
 import { Message } from './../message/message.model';
-import { Thread } from './../thread/thread.model';
 import { User } from './../user/user.model';
+import { FromNowPipe } from './../pipes/from-now.pipe';
 
 @Component({
   selector: 'chat-message',
   templateUrl: './chat-message.component.html',
-  styleUrls: ['./chat-message.component.css']
 })
 export class ChatMessageComponent implements OnInit {
   @Input() message: Message;
   currentUser: User;
   incoming: boolean;
 
-  constructor(public usersService: UsersService) { }
+  constructor(public usersService: UsersService,
+    public fromNow: FromNowPipe 
+  ) { }
 
   ngOnInit(): void {
     this.usersService.currentUser.subscribe(

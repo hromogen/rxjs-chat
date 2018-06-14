@@ -7,11 +7,7 @@ import { MessagesService } from './message/messages.service';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <main>
-      <chat-page></chat-page>
-    </main>
-  `,
+  templateUrl: './app.component.html',
 })
 export class AppComponent {
   constructor(public messagesService: MessagesService,

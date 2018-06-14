@@ -1,5 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { messagesServiceInjectables } from './message/messages.service';
+import { usersServiceInjectables } from './user/users.service';
+import { threadsServiceInjectables } from './thread/threads.service';
+import { fromNowPipeInjectables, FromNowPipe } from './pipes/from-now.pipe';
 
 import { AppComponent } from './app.component';
 import { ChatNavBarComponent } from './chat-nav-bar/chat-nav-bar.component';
@@ -17,12 +23,19 @@ import { ChatMessageComponent } from './chat-message/chat-message.component';
     ChatWindowComponent,
     ChatPageComponent,
     ChatThreadComponent,
-    ChatMessageComponent
+    ChatMessageComponent, 
+    FromNowPipe
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    messagesServiceInjectables,
+    usersServiceInjectables,
+    threadsServiceInjectables,
+    fromNowPipeInjectables,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

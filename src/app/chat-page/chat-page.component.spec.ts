@@ -1,6 +1,14 @@
+/*
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChatPageComponent } from './chat-page.component';
+import { ChatNavBarComponent } from './../chat-nav-bar/chat-nav-bar.component';
+import { ChatThreadComponent } from './../chat-thread/chat-thread.component';
+import { ChatThreadsComponent } from './../chat-threads/chat-threads.component';
+import { ChatWindowComponent } from './../chat-window/chat-window.component';
+import { ChatMessageComponent } from './../chat-message/chat-message.component';
+import { FormsModule } from '@angular/forms';
+
 
 describe('ChatPageComponent', () => {
   let component: ChatPageComponent;
@@ -8,7 +16,15 @@ describe('ChatPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChatPageComponent ]
+      declarations: [ 
+        ChatPageComponent,
+        ChatNavBarComponent,
+        ChatThreadsComponent,
+        ChatThreadComponent,
+        ChatWindowComponent,
+        ChatMessageComponent,
+        FormsModule,
+      ]
     })
     .compileComponents();
   }));
@@ -23,3 +39,4 @@ describe('ChatPageComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+*/

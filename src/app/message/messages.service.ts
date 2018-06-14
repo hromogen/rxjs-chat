@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs-compat';
+import { Observable, Subject } from 'rxjs';
+import { scan, publishReplay, refCount, map, filter } from 'rxjs/operators';
 import { Message } from './message.model';
 import { Thread } from '../thread/thread.model';
 import { User } from '../user/user.model';
@@ -21,34 +22,38 @@ export class MessagesService {
   markThreadAsRead: Subject<any> = new Subject<any>();
 
   constructor() {
-    this.messages = this.updates.scan((messages: Message[],
-    operation: IMessagesOperation) => operation(messages), initialMessages)
-    .publishReplay(1)
-    .refCount();
+    this.messages = this.updates.pipe(
+      scan((messages: Message[],
+            operation: IMessagesOperation) => operation(messages), initialMessages), 
+      publishReplay(1),
+      refCount()
+    );
 
-    this.create.map((message: Message): IMessagesOperation => 
-    (messages: Message[]) => 
-    messages.concat(message))
-    .subscribe(this.updates);
+    this.create.pipe(
+      map((message: Message): IMessagesOperation => (messages: Message[]) => messages.concat(message))
+    ).subscribe(this.updates);
 
     this.newMessages.subscribe(this.create);
 
-    this.markThreadAsRead.map((thread: Thread) => (message: Message) => {
-      if(message.thread.id === thread.id){
-        message.isRead = true;
-      }
-      return message;
-    }).subscribe(this.updates);
+    this.markThreadAsRead.pipe(
+      map((thread: Thread) => (messages: Message[]) =>
+       messages.map((message: Message) => {
+         if(message.thread.id === thread.id){
+           message.isRead = true;
+          }
+        return message;
+      }))
+    ).subscribe(this.updates);
   };
 
   addMessage(message: Message): void {
       this.newMessages.next(message);
   };
 
-  messagesForThreadUser = (thread: Thread, user: User): Observable<Message> => this.newMessages
-  .filter((message: Message) => (
-      message.thread.id === thread.id && message.author.id !== user.id
-    ));
+  messagesForThreadUser = (thread: Thread, user: User): Observable<Message> => this.newMessages.pipe(
+    filter( (message: Message) => message.thread.id === thread.id && 
+    message.author.id !== user.id )
+  );
 }
 
 export const messagesServiceInjectables: Array<any> = [

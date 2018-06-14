@@ -13,6 +13,6 @@ export class UsersService {
     }
 };
 
-export const userServiseInjectables: Array<any> = [
+export const usersServiceInjectables: Array<any> = [
     UsersService,
 ];

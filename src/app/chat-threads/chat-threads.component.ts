@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Observable } from 'rxjs-compat';
-import { Thread } from './../thread/thread.model';
 import { ThreadsService } from './../thread/threads.service';
 
 @Component({
@@ -14,7 +13,7 @@ import { ThreadsService } from './../thread/threads.service';
       </div>
     </div>
   `,
-  styleUrls: ['./chat-threads.component.css']
+
 })
 export class ChatThreadsComponent implements OnInit {
   threads: Observable<any>;
